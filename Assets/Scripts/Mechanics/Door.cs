@@ -40,11 +40,17 @@ public class Door : MonoBehaviour
         
         if(currentCapacity == maxCapacity)
         {
-            this.isOpen = false;
-            RefreshSprite();
+            this.CloseDoor();
         }
 
         RefreshCapacityLabel();
+    }
+
+    private void CloseDoor()
+    {
+        this.isOpen = false;
+        this.GetComponent<AudioSource>().Play();
+        this.RefreshSprite();
     }
 
     private void RefreshSprite()
