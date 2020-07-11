@@ -28,11 +28,13 @@ public class NPCMove : MonoBehaviour
     private Vector2 moveDir;
     private Rigidbody2D rigidbody2D;
     private Animator animator;
+    private GameObject player;
 
     private void Awake()
     {
         rigidbody2D = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+        player = GameObject.FindGameObjectWithTag("Player");
     }
 
     private void Start()
@@ -43,9 +45,30 @@ public class NPCMove : MonoBehaviour
 
     private void Update()
     {
+        if (Input.GetKeyDown(KeyCode.S))
+        {
+            GettingSprayed();
+        }
+
+        HandleState();
         HandleAvoidance();
         HandleMovement();
         HandleAnimation();
+        HandleBehaviour();
+
+        Debug.Log(rigidbody2D.velocity);
+    }
+
+    private void HandleBehaviour()
+    {
+        if (state == NPCState.interacting)
+        {
+            if (behaviour == NPCBehaviour.party)
+            {
+                rigidbody2D.velocity = new Vector2(0, 0);
+                animator.SetBool("Interact", true);
+            }
+        }
     }
 
     private void HandleState()
@@ -57,8 +80,18 @@ public class NPCMove : MonoBehaviour
                 break;
             case NPCState.fleeing:
                 moveSpeed = sprintingSpeed;
+                if(CheckForDoor() != null)
+                {
+
+                }
+                else 
+                {
+                    moveDir = transform.position - player.transform.position;
+                    moveDir = SnapTo(moveDir, 45);
+                }
                 break;
             case NPCState.interacting:
+                moveSpeed = 0f;
                 break;
             default:
                 break;
@@ -87,7 +120,8 @@ public class NPCMove : MonoBehaviour
                 Debug.DrawRay(transform.position, rayDirs[i].normalized, Color.red, Time.deltaTime);
                 if (moveDir == rayDirs[i])
                 {
-                   moveDir = GetNewDirection();
+
+                    moveDir = GetNewDirection();
                 }
             }
             else
@@ -107,27 +141,26 @@ public class NPCMove : MonoBehaviour
             return false;
     }
 
-    Vector2 CheckForDoor() 
+    Door CheckForDoor() 
     {
         Collider2D[] collider2Ds = Physics2D.OverlapCircleAll(transform.position, 5, doorMask);
         if (collider2Ds.Length > 0)
         {
-            Vector2 dest = new Vector2(0, 0);
+            Door destDoor = null;
             float minDist = Mathf.Infinity;
             for (int i = 0; i < collider2Ds.Length; i++)
             {
+                destDoor = collider2Ds[i].GetComponent<Door>();
                 float dist = Vector2.Distance(transform.position, collider2Ds[i].transform.position);
-                if (dist < minDist)
+                if (dist < minDist && destDoor.isOpen)
                 {
-                    dest = collider2Ds[i].transform.position;
                     minDist = dist;
                 }
             }
 
-            return dest;
+            return minDist < Mathf.Infinity ? destDoor : null;
         }
-
-        return new Vector2(0,0);
+        return null;
     }
 
     Vector2 GetNewDirection() 
@@ -147,12 +180,21 @@ public class NPCMove : MonoBehaviour
 
     public void GettingSprayed() 
     {
-        state = NPCState.fleeing;
-        HandleState();
+        if (state != NPCState.fleeing)
+            state = NPCState.fleeing;
     }
 
     private void FixedUpdate()
     {
         rigidbody2D.velocity = moveDir * moveSpeed;
+    }
+
+    Vector2 SnapTo(Vector2 v2, float snapAngle)
+    {
+        float angle = -Mathf.Atan2(v2.x, v2.y) * Mathf.Rad2Deg + snapAngle;
+        angle = Mathf.Round(angle / snapAngle) * snapAngle;
+        Quaternion q = Quaternion.AngleAxis(angle, Vector2.up);
+
+        return q * v2;
     }
 }

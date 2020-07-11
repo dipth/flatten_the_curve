@@ -155,7 +155,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   walkingSpeed: 1.5
-  sprintingSpeed: 6
+  sprintingSpeed: 2
   rayDirs:
   - {x: 1, y: 0}
   - {x: 0, y: 1}
@@ -168,3 +168,6 @@ MonoBehaviour:
   avoidanceMask:
     serializedVersion: 2
     m_Bits: 1792
+  doorMask:
+    serializedVersion: 2
+    m_Bits: 2048
