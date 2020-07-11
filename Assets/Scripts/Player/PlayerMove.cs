@@ -100,11 +100,11 @@ public class PlayerMove : MonoBehaviour
         float x = Input.GetAxisRaw("Horizontal");
         float y = Input.GetAxisRaw("Vertical");
 
-        moveDir = new Vector2(x * moveSpeed, y * moveSpeed);
+        moveDir = new Vector2(x, y).normalized;
     }
 
     private void FixedUpdate()
     {
-        rigidbody2D.velocity = moveDir;
+        rigidbody2D.velocity = moveDir * moveSpeed;
     }
 }
