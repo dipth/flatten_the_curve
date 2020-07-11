@@ -16,9 +16,9 @@ GameObject:
   - component: {fileID: 6787426334775079387}
   - component: {fileID: 7918478083263281209}
   - component: {fileID: 7167225320689954136}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -156,6 +156,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9088b26e81adf5a429289449261cfef2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  walkSpeed: 0
+  sprintSpeed: 0
 --- !u!114 &7918478083263281209
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -168,6 +170,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b25203b8b535706448a1bd42c439a891, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxHealthPacks: 5
+  healthPackUIElements: []
+  exposureBar: {fileID: 0}
+  exposureMask:
+    serializedVersion: 2
+    m_Bits: 0
+  exposureDistance: 0
 --- !u!114 &7167225320689954136
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -22,6 +22,7 @@ public class NPCMove : MonoBehaviour
 
     [SerializeField] private List<Vector2> rayDirs = new List<Vector2>();
     [SerializeField] private LayerMask avoidanceMask;
+    [SerializeField] private LayerMask doorMask;
 
     private float moveSpeed;
     private Vector2 moveDir;
@@ -42,7 +43,6 @@ public class NPCMove : MonoBehaviour
 
     private void Update()
     {
-        HandleState();
         HandleAvoidance();
         HandleMovement();
         HandleAnimation();
@@ -50,7 +50,21 @@ public class NPCMove : MonoBehaviour
 
     private void HandleState()
     {
-        throw new NotImplementedException();
+        switch (state)
+        {
+            case NPCState.walking:
+                moveSpeed = walkingSpeed;
+                break;
+            case NPCState.fleeing:
+                moveSpeed = sprintingSpeed;
+                break;
+            case NPCState.interacting:
+                break;
+            default:
+                break;
+        }
+
+        state = NPCState.walking;
     }
 
     private void HandleAnimation()
@@ -61,21 +75,18 @@ public class NPCMove : MonoBehaviour
 
     private void HandleMovement()
     {
+
     }
 
     private void HandleAvoidance()
     {
         for (int i = 0; i < rayDirs.Count; i++)
         {
-            RaycastHit2D hit = Physics2D.Raycast(transform.position, rayDirs[i].normalized, 1, avoidanceMask);
-
-            if (hit.collider != null)
+            if (CheckRaycast(rayDirs[i].normalized))
             {
                 Debug.DrawRay(transform.position, rayDirs[i].normalized, Color.red, Time.deltaTime);
                 if (moveDir == rayDirs[i])
                 {
-
-
                    moveDir = GetNewDirection();
                 }
             }
@@ -86,10 +97,44 @@ public class NPCMove : MonoBehaviour
         }
     }
 
+    bool CheckRaycast(Vector2 direction) 
+    {
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, direction, 1, avoidanceMask);
+
+        if (hit.collider != null)
+            return true;
+        else
+            return false;
+    }
+
+    Vector2 CheckForDoor() 
+    {
+        Collider2D[] collider2Ds = Physics2D.OverlapCircleAll(transform.position, 5, doorMask);
+        if (collider2Ds.Length > 0)
+        {
+
+        }
+    }
+
     Vector2 GetNewDirection() 
     {
-        int index = UnityEngine.Random.Range(0, rayDirs.Count);
-        return rayDirs[index];
+        for (int i = 0; i < rayDirs.Count; i++)
+        {
+            int index = UnityEngine.Random.Range(0, rayDirs.Count);
+
+            if (!CheckRaycast(rayDirs[index]))
+            {
+                return rayDirs[index];
+            }
+        }
+
+        return rayDirs[0];
+    }
+
+    public void GettingSprayed() 
+    {
+        state = NPCState.fleeing;
+        HandleState();
     }
 
     private void FixedUpdate()

@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - healthpack
+  - PartyGoer
+  - Protester
+  - GhettoBlaster
   layers:
   - Default
   - TransparentFX
@@ -16,7 +19,7 @@ TagManager:
   - 
   - NPC
   - Block
-  - 
+  - Player
   - 
   - 
   - 
