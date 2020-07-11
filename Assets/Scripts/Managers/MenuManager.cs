@@ -5,7 +5,7 @@ public class MenuManager : MonoBehaviour
 {
     public void StartGame() 
     {
-    
+        SceneManager.LoadScene("World");
     }
 
     public void OpenSettings() 

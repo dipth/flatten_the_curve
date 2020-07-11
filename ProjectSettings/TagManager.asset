@@ -45,11 +45,11 @@ TagManager:
   - name: Ground
     uniqueID: 3412800941
     locked: 0
-  - name: Buildings
-    uniqueID: 3142574631
-    locked: 0
   - name: Characters
     uniqueID: 1331445737
+    locked: 0
+  - name: Buildings
+    uniqueID: 3142574631
     locked: 0
   - name: Decorations
     uniqueID: 2261014927
