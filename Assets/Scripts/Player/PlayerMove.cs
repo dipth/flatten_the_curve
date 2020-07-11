@@ -13,6 +13,7 @@ public class PlayerMove : MonoBehaviour
 
     private playerMoveState moveState;
 
+    [SerializeField] private Animator animator;
     [SerializeField]private float walkSpeed;
     [SerializeField]private float sprintSpeed;
 
@@ -28,6 +29,7 @@ public class PlayerMove : MonoBehaviour
     private void Awake()
     {
         rigidbody2D = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
     }
 
     // Start is called before the first frame update
@@ -43,6 +45,13 @@ public class PlayerMove : MonoBehaviour
         HandleInput();
         HandleStamina();
         SetPlayerSpeed();
+        HandleAnimation();
+    }
+
+    private void HandleAnimation()
+    {
+        animator.SetFloat("xVelocity", rigidbody2D.velocity.x);
+        animator.SetFloat("yVelocity", rigidbody2D.velocity.y);
     }
 
     private void SetPlayerSpeed()
@@ -88,8 +97,8 @@ public class PlayerMove : MonoBehaviour
         }
 
 
-        float x = Input.GetAxis("Horizontal");
-        float y = Input.GetAxis("Vertical");
+        float x = Input.GetAxisRaw("Horizontal");
+        float y = Input.GetAxisRaw("Vertical");
 
         moveDir = new Vector2(x * moveSpeed, y * moveSpeed);
     }
