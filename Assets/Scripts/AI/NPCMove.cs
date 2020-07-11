@@ -56,6 +56,8 @@ public class NPCMove : MonoBehaviour
                 Debug.DrawRay(transform.position, rayDirs[i].normalized, Color.red, Time.deltaTime);
                 if (moveDir == rayDirs[i])
                 {
+
+
                    moveDir = GetNewDirection();
                 }
             }
