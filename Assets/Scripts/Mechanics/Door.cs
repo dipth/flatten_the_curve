@@ -11,7 +11,7 @@ public class Door : MonoBehaviour
     [SerializeField] private Text capacityLabel;
 
     private int currentCapacity = 0;
-    bool isOpen = true;
+    public bool isOpen = true;
 
     // Start is called before the first frame update
     void Start()
@@ -29,7 +29,7 @@ public class Door : MonoBehaviour
         }
     }
 
-    void Enter()
+    public void Enter()
     {
         if (!this.isOpen)
         {
