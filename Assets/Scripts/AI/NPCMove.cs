@@ -112,8 +112,22 @@ public class NPCMove : MonoBehaviour
         Collider2D[] collider2Ds = Physics2D.OverlapCircleAll(transform.position, 5, doorMask);
         if (collider2Ds.Length > 0)
         {
+            Vector2 dest = new Vector2(0, 0);
+            float minDist = Mathf.Infinity;
+            for (int i = 0; i < collider2Ds.Length; i++)
+            {
+                float dist = Vector2.Distance(transform.position, collider2Ds[i].transform.position);
+                if (dist < minDist)
+                {
+                    dest = collider2Ds[i].transform.position;
+                    minDist = dist;
+                }
+            }
 
+            return dest;
         }
+
+        return new Vector2(0,0);
     }
 
     Vector2 GetNewDirection() 
