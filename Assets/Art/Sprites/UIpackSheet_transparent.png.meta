@@ -1810,7 +1810,7 @@ TextureImporter:
     second: UIpackSheet_transparent_601
   - first:
       213: -2199666043510257537
-    second: UIpackSheet_transparent_602
+    second: ExposedBG
   - first:
       213: 5484180979029916438
     second: UIpackSheet_transparent_603
@@ -1948,7 +1948,7 @@ TextureImporter:
     second: UIpackSheet_transparent_647
   - first:
       213: -8188061772569690921
-    second: UIpackSheet_transparent_648
+    second: ExposedBGBorder
   - first:
       213: 1232656244088109806
     second: UIpackSheet_transparent_649
@@ -2026,7 +2026,7 @@ TextureImporter:
     second: UIpackSheet_transparent_673
   - first:
       213: -8077487583896913595
-    second: UIpackSheet_transparent_674
+    second: Exposed_Bar
   - first:
       213: -6893930378234712286
     second: UIpackSheet_transparent_675
@@ -14931,16 +14931,16 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: UIpackSheet_transparent_602
+      name: ExposedBG
       rect:
         serializedVersion: 2
-        x: 252
-        y: 144
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
+        x: 250
+        y: 85
+        width: 12
+        height: 12
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 3}
       outline: []
       physicsShape: []
       tessellationDetail: 0
@@ -15897,16 +15897,16 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: UIpackSheet_transparent_648
+      name: ExposedBGBorder
       rect:
         serializedVersion: 2
         x: 111
         y: 108
         width: 10
         height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 2}
       outline: []
       physicsShape: []
       tessellationDetail: 0
@@ -16443,16 +16443,16 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: UIpackSheet_transparent_674
+      name: Exposed_Bar
       rect:
         serializedVersion: 2
-        x: 3
-        y: 72
+        x: 237
+        y: 86
         width: 10
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
+        height: 10
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 2}
       outline: []
       physicsShape: []
       tessellationDetail: 0
@@ -17690,7 +17690,7 @@ TextureImporter:
         width: 4
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []

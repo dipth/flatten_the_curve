@@ -13,10 +13,10 @@ public class PlayerMove : MonoBehaviour
 
     private playerMoveState moveState;
 
-    [SerializeField] private Animator animator;
     [SerializeField]private float walkSpeed;
     [SerializeField]private float sprintSpeed;
 
+    private Animator animator;
     private Rigidbody2D rigidbody2D;
     private float moveSpeed;
     private float stamina = 100f;

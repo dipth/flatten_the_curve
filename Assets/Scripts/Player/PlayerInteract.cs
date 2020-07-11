@@ -1,18 +1,93 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerInteract : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] private int maxHealthPacks = 5;
+    [SerializeField] private List<Image> healthPackUIElements = new List<Image>();
+    [SerializeField] private Image exposureBar;
+    [SerializeField] private LayerMask exposureMask;
+    [SerializeField] private float exposureDistance;
+
+    private int currHealthPacks = 0;
+    //Magic numbers weeee....
+    private float minExposure = 10;
+    private float maxExposure = 395;
+    private float currExposure = 10;
+
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        
+        if (collision.CompareTag("healthpack"))
+        {
+            if (AddHealthPack())
+            {
+                Destroy(collision.gameObject);
+            }
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        
+        HandleExposure();
+    }
+
+    private void HandleExposure()
+    {
+        Collider2D[] collider2Ds = Physics2D.OverlapCircleAll(transform.position, exposureDistance, exposureMask);
+        if (collider2Ds.Length > 0)
+        {
+            if (exposureBar.rectTransform.rect.height < maxExposure)
+            {
+                currExposure += .25f;
+            }
+        }
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            if (currHealthPacks > 0)
+            {
+                currExposure -= 75f;
+
+                if (currExposure < minExposure)
+                {
+                    currExposure = minExposure;
+                }
+
+                RemoveHealthPack();
+            }
+        }
+
+        Rect newrect = exposureBar.rectTransform.rect;
+        newrect.height = currExposure;
+        exposureBar.rectTransform.sizeDelta = new Vector2(newrect.width, newrect.height);
+    }
+
+    bool AddHealthPack() 
+    {
+        if (currHealthPacks < 5)
+        {
+            ToggleHealthPacks();
+            currHealthPacks++;
+            return true;
+        }
+        return false;
+    }
+
+    void RemoveHealthPack() 
+    {
+        if (currHealthPacks > 0)
+        {
+            currHealthPacks--;
+            ToggleHealthPacks();
+        }
+    }
+
+    void ToggleHealthPacks() 
+    {
+        healthPackUIElements[currHealthPacks].enabled = !healthPackUIElements[currHealthPacks].enabled;
     }
 }
