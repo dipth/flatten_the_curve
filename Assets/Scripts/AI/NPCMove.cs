@@ -5,6 +5,18 @@ using UnityEngine;
 
 public class NPCMove : MonoBehaviour
 {
+    private enum NPCState
+    {
+        walking,fleeing,interacting
+    }
+    private enum NPCBehaviour 
+    {
+        wandrer,party,protester
+    }
+
+    private NPCState state;
+    private NPCBehaviour behaviour;
+
     [SerializeField] private float walkingSpeed;
     [SerializeField] private float sprintingSpeed;
 
@@ -30,9 +42,15 @@ public class NPCMove : MonoBehaviour
 
     private void Update()
     {
+        HandleState();
         HandleAvoidance();
         HandleMovement();
         HandleAnimation();
+    }
+
+    private void HandleState()
+    {
+        throw new NotImplementedException();
     }
 
     private void HandleAnimation()
