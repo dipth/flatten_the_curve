@@ -42,6 +42,15 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: Decor
-    uniqueID: 3946180635
+  - name: Ground
+    uniqueID: 3412800941
+    locked: 0
+  - name: Buildings
+    uniqueID: 3142574631
+    locked: 0
+  - name: Characters
+    uniqueID: 1331445737
+    locked: 0
+  - name: Decorations
+    uniqueID: 2261014927
     locked: 0
