@@ -21,6 +21,7 @@ public class NPCWalking : StateMachineBehaviour
         npc.HandleAnimation();
         npc.HandleBehaviour();
         npc.HandleGettingStuck();
+        npc.CheckForToiletPaper();
     }
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state

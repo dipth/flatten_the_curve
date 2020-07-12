@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4414829720316402895}
   - component: {fileID: 4414829720316402882}
   - component: {fileID: 4414829720316402883}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: toilet_paper
   m_TagString: Untagged
   m_Icon: {fileID: 0}

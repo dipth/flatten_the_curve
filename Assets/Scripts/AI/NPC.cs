@@ -25,6 +25,7 @@ public class NPC : MonoBehaviour
     [SerializeField] private LayerMask avoidanceMask;
     [SerializeField] private LayerMask doorMask;
     [SerializeField] private LayerMask interactMask;
+    [SerializeField] private LayerMask toiletPaperMask;
 
     private float moveSpeed;
     private Vector2 moveDir;
@@ -38,6 +39,7 @@ public class NPC : MonoBehaviour
     private float stuckTimer = 3f;
 
     private bool isStuck = false;
+    private bool isTPNear = false;
 
     private void Awake()
     {
@@ -61,6 +63,9 @@ public class NPC : MonoBehaviour
 
     public void HandleBehaviour()
     {
+        if (isTPNear)
+            return;
+
         float distToTarget = Mathf.Infinity;
         Vector2 target = new Vector2(0,0);
         Transform targetTransform = null;
@@ -197,7 +202,33 @@ public class NPC : MonoBehaviour
             }
         }
     }
+    public void CheckForToiletPaper() 
+    {
+        Collider2D[] collider2Ds = Physics2D.OverlapCircleAll(transform.position, 3f, toiletPaperMask);
+        if (collider2Ds.Length > 0)
+        {
+            SetTargetDirection(collider2Ds[0].transform.position - transform.position);
 
+            isTPNear = true;
+
+            float dist = Vector2.Distance(transform.position, collider2Ds[0].transform.position);
+
+            Debug.Log(dist);
+
+            if (dist < 1.3f)
+            {
+                animator.SetTrigger("WithInRangeOfTP");
+                SetMoveSpeed(0);
+            }
+            else
+            {
+                animator.SetTrigger("Walking");
+                SetMoveSpeed(walkingSpeed);
+            }
+        }
+        else
+            isTPNear = false;
+    }
     public void GettingSprayed() 
     {
         animator.SetTrigger("Fleeing");
