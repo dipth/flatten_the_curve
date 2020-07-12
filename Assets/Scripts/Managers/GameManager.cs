@@ -13,6 +13,8 @@ public class GameManager : MonoBehaviour
     private int savedCitizens = 0;
     [SerializeField] private Text totalCitizensLeftLabel;
     [SerializeField] private AudioSource musicSource;
+    [SerializeField] private Image tutorialBox;
+    [SerializeField] private Text tutorialText;
 
     private void Awake()
     {
@@ -29,6 +31,11 @@ public class GameManager : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.M))
             ToggleMusic();
+
+        if (Input.GetKeyDown(KeyCode.H))
+        {
+            ToggleHelp();
+        }
     
     }
 
@@ -58,6 +65,13 @@ public class GameManager : MonoBehaviour
     void ToggleMusic() 
     {
         musicSource.enabled = !musicSource.enabled;
+    }
+
+    void ToggleHelp()
+    {
+        bool newValue = !tutorialBox.enabled;
+        tutorialBox.enabled = newValue;
+        tutorialText.enabled = newValue;
     }
 
     private void RefreshTotalCitizensLeftLabel()
