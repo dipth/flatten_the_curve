@@ -34,7 +34,6 @@ public class NPCDirectionDummy : MonoBehaviour
         Debug.DrawRay(rigidbody2D.position, fleeDirection, Color.yellow);
         Debug.DrawRay(rigidbody2D.position, snapDirection, Color.green);
     }
-
     private static float VectorToAngle(Vector2 p_vector2)
     {
         if (p_vector2.x < 0)

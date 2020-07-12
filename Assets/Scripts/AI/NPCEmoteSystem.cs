@@ -10,7 +10,7 @@ public class NPCEmoteSystem : MonoBehaviour
     public void SetEmotion(NPCEmotions newEmotion) 
     {
         emotions = newEmotion;
-        ShowEmotion();
+        StartCoroutine(ShowEmotion());
     }
 
     private IEnumerator ShowEmotion() 
@@ -22,24 +22,23 @@ public class NPCEmoteSystem : MonoBehaviour
                 yield return new WaitForSeconds(3);
                 emotes[0].SetActive(false);
                 break;
-            case NPCEmotions.Angry:
-                emotes[1].SetActive(true);
-                yield return new WaitForSeconds(3);
-                emotes[1].SetActive(false);
-                break;
-            case NPCEmotions.Confused:
+            case NPCEmotions.Interacting:
                 emotes[2].SetActive(true);
                 yield return new WaitForSeconds(3);
                 emotes[2].SetActive(false);
+                break;
+            case NPCEmotions.Confused:
+                emotes[1].SetActive(true);
+                yield return new WaitForSeconds(3);
+                emotes[1].SetActive(false);
                 break;
             default:
                 break;
         }
     }
-
 }
 
 public enum NPCEmotions
 {
-    Happy,Angry,Confused
+    Happy,Interacting,Confused
 }
