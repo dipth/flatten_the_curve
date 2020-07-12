@@ -2,13 +2,14 @@
 using System.Collections.Generic;
 using System.Xml.Serialization;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
 
-    private int maxCitizens = 67;
+    private int maxCitizens = 3;
     private int savedCitizens = 0;
     [SerializeField] private Text totalCitizensLeftLabel;
     [SerializeField] private AudioSource musicSource;
@@ -36,6 +37,15 @@ public class GameManager : MonoBehaviour
     {
         savedCitizens++;
         RefreshTotalCitizensLeftLabel();
+        if(savedCitizens >= maxCitizens)
+        {
+            SceneManager.LoadScene("Win");
+        }
+    }
+
+    public void Die()
+    {
+        SceneManager.LoadScene("Loose");
     }
 
     //Close app.
