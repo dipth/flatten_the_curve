@@ -9,6 +9,7 @@ TagManager:
   - Protester
   - GhettoBlaster
   - Regular
+  - ToiletPaper
   layers:
   - Default
   - TransparentFX

@@ -19,17 +19,6 @@ public class PlayerInteract : MonoBehaviour
     private float maxExposure = 395;
     private float currExposure = 10;
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.CompareTag("healthpack"))
-        {
-            if (AddHealthPack())
-            {
-                Destroy(collision.gameObject);
-            }
-        }
-    }
-
     private void Update()
     {
         HandleExposure();
@@ -42,11 +31,11 @@ public class PlayerInteract : MonoBehaviour
         {
             if (exposureBar.rectTransform.rect.height < maxExposure)
             {
-                currExposure += .25f;
+                currExposure += .05f;
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.E))
         {
             if (currHealthPacks > 0)
             {
@@ -66,7 +55,7 @@ public class PlayerInteract : MonoBehaviour
         exposureBar.rectTransform.sizeDelta = new Vector2(newrect.width, newrect.height);
     }
 
-    bool AddHealthPack() 
+    public bool AddHealthPack() 
     {
         if (currHealthPacks < 5)
         {
