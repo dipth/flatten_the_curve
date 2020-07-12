@@ -26,7 +26,10 @@ public class SprayGun : MonoBehaviour
     private void FixedUpdate()
     {
         //transform.rotation = Quaternion.LookRotation(player.moveDir);
-        transform.up = player.moveDir;
+        if (player.moveDir.magnitude == 0)
+            transform.up = new Vector2(0, -1);
+        else
+            transform.up = player.moveDir;
     }
 
     private void FireGun()

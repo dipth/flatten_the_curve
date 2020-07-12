@@ -8,6 +8,7 @@ TagManager:
   - PartyGoer
   - Protester
   - GhettoBlaster
+  - Regular
   layers:
   - Default
   - TransparentFX

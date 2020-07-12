@@ -16,11 +16,12 @@ public class SprayGunCollider : MonoBehaviour
         
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
+        Debug.Log("Hit");
         GameObject obj = collision.gameObject;
 
-        if (obj.CompareTag("NPC"))
+        if (obj.CompareTag("PartyGoer") || obj.CompareTag("Protester") || obj.CompareTag("Regular"))
         {
             obj.GetComponent<NPC>().GettingSprayed();
         }

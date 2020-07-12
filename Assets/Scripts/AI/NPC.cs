@@ -34,6 +34,11 @@ public class NPC : MonoBehaviour
 
     private Transform centerPoint;
 
+    private float currStuckTimer;
+    private float stuckTimer = 3f;
+
+    private bool isStuck = false;
+
     private void Awake()
     {
         rigidbody2D = GetComponent<Rigidbody2D>();
@@ -115,7 +120,25 @@ public class NPC : MonoBehaviour
             }
         }
     }
+    
+    public void HandleGettingStuck() 
+    {
+        if (rigidbody2D.velocity.magnitude < 0.5f && !isStuck)
+        {
+            SetStuckTimer();
+            isStuck = true;
+        }
 
+        if (currStuckTimer < Time.time)
+        {
+            GetNewDirection();
+            isStuck = false;
+        }
+    }
+    public void SetStuckTimer() 
+    {
+        currStuckTimer = Time.time + stuckTimer;
+    }
     public void SetMoveSpeed(float newSpeed)
     {
         moveSpeed = newSpeed;
@@ -149,7 +172,7 @@ public class NPC : MonoBehaviour
         Door destDoor = null;
         float minDist = Mathf.Infinity;
 
-        Collider2D[] collider2Ds = Physics2D.OverlapCircleAll(transform.position, 2.5f, doorMask);
+        Collider2D[] collider2Ds = Physics2D.OverlapCircleAll(transform.position, 1.95f, doorMask);
         if (collider2Ds.Length > 0)
         { 
             for (int i = 0; i < collider2Ds.Length; i++)

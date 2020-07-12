@@ -25,6 +25,7 @@ public class NPCFleeing : StateMachineBehaviour
         npc.HandleAnimation();
         npc.HandleAvoidance();
         npc.CheckForDoor();
+        npc.HandleGettingStuck();
     }
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state

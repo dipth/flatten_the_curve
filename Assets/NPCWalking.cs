@@ -20,6 +20,7 @@ public class NPCWalking : StateMachineBehaviour
         npc.HandleAvoidance();
         npc.HandleAnimation();
         npc.HandleBehaviour();
+        npc.HandleGettingStuck();
     }
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
