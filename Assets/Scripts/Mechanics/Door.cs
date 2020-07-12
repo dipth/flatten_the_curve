@@ -44,6 +44,7 @@ public class Door : MonoBehaviour
         }
 
         RefreshCapacityLabel();
+        GameManager.instance.AddCitizen();
     }
 
     private void CloseDoor()
