@@ -22,7 +22,7 @@ public class SprayGunCollider : MonoBehaviour
 
         if (obj.CompareTag("NPC"))
         {
-            //obj.GetComponent<NPC>().GettingSprayed();
+            obj.GetComponent<NPC>().GettingSprayed();
         }
     }
 }

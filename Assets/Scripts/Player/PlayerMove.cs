@@ -23,7 +23,7 @@ public class PlayerMove : MonoBehaviour
     private float staminaRegenTimer;
     private float staminaRegenDelay = 2f;
 
-    private Vector2 moveDir;
+    public Vector2 moveDir;
 
 
     private void Awake()

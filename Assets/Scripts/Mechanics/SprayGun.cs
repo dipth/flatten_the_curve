@@ -4,29 +4,41 @@ using UnityEngine;
 
 public class SprayGun : MonoBehaviour
 {
-    [SerializeField] ParticleSystem particles;
-    [SerializeField] Collider2D collider;
+    [SerializeField] ParticleSystem sprayParticles;
+    [SerializeField] Collider2D sprayCollider;
+    [SerializeField] PlayerMove player;
 
     // Start is called before the first frame update
     void Start()
     {
-        collider.enabled = false;
+        sprayCollider.enabled = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if(Input.GetKeyDown(KeyCode.LeftControl) || Input.GetKeyDown(KeyCode.RightControl))
+        {
+            FireGun();
+        }
+    }
+
+    private void FixedUpdate()
+    {
+        //transform.rotation = Quaternion.LookRotation(player.moveDir);
+        transform.up = player.moveDir;
     }
 
     private void FireGun()
     {
-        collider.enabled = true;
-        particles.Play();
+        sprayCollider.enabled = true;
+        sprayParticles.Play();
+        StartCoroutine(EndFireGun());
     }
 
-    private void ScareNPCs()
+    private IEnumerator EndFireGun()
     {
-        // TODO: Implement me
+        yield return new WaitForSeconds(0.2f);
+        sprayCollider.enabled = false;
     }
 }
