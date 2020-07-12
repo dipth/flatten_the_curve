@@ -15,6 +15,6 @@ public class LogoScene : MonoBehaviour
     IEnumerator LoadNextScene()
     {
         yield return new WaitForSeconds(countdownTimer);
-        SceneManager.LoadScene("Briefing");
+        SceneManager.LoadScene("Title");
     }
 }
