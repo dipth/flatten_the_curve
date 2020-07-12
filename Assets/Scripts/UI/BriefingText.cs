@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public enum BriefingTextState
 {
@@ -87,8 +88,7 @@ public class BriefingText : MonoBehaviour
 
     private void GoToNextScene()
     {
-        // TODO: Implement me
-        Debug.Log("Going to next scene...");
+        SceneManager.LoadScene("World");
     }
 
     private IEnumerator PrintLine()

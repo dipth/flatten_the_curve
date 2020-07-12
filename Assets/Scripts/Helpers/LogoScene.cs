@@ -5,7 +5,6 @@ using UnityEngine.SceneManagement;
 
 public class LogoScene : MonoBehaviour
 {
-
     public float countdownTimer = 4f;
 
     private void Awake()
@@ -16,6 +15,6 @@ public class LogoScene : MonoBehaviour
     IEnumerator LoadNextScene()
     {
         yield return new WaitForSeconds(countdownTimer);
-        SceneManager.LoadScene("Menu");
+        SceneManager.LoadScene("Briefing");
     }
 }
