@@ -217,7 +217,7 @@ public class NPC : MonoBehaviour
 
             if (dist < 1.3f)
             {
-                animator.SetTrigger("WithInRangeOfTP");
+                animator.SetTrigger("WithinRangeOfTP");
                 SetMoveSpeed(0);
             }
             else

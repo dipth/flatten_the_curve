@@ -260,6 +260,9 @@ MonoBehaviour:
   interactMask:
     serializedVersion: 2
     m_Bits: 256
+  toiletPaperMask:
+    serializedVersion: 2
+    m_Bits: 4096
 --- !u!114 &9042705572043762459
 MonoBehaviour:
   m_ObjectHideFlags: 0

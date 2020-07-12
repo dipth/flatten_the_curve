@@ -5,6 +5,7 @@ using UnityEngine;
 public class NPCWalking : StateMachineBehaviour
 {
     private NPC npc;
+    public bool canInteract = false;
 
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
@@ -19,7 +20,10 @@ public class NPCWalking : StateMachineBehaviour
     {
         npc.HandleAvoidance();
         npc.HandleAnimation();
-        npc.HandleBehaviour();
+        
+        if (canInteract)
+            npc.HandleBehaviour();
+        
         npc.HandleGettingStuck();
         npc.CheckForToiletPaper();
     }

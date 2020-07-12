@@ -322,7 +322,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   walkingSpeed: 1.5
-  sprintingSpeed: 2
+  sprintingSpeed: 3
   rayDirs:
   - {x: 1, y: 0}
   - {x: 0, y: 1}
@@ -341,6 +341,9 @@ MonoBehaviour:
   interactMask:
     serializedVersion: 2
     m_Bits: 256
+  toiletPaperMask:
+    serializedVersion: 2
+    m_Bits: 4096
 --- !u!114 &-8174944088195217226
 MonoBehaviour:
   m_ObjectHideFlags: 0
