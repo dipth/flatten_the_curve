@@ -7,6 +7,8 @@ public class SprayGun : MonoBehaviour
     [SerializeField] ParticleSystem sprayParticles;
     [SerializeField] Collider2D sprayCollider;
     [SerializeField] PlayerMove player;
+    [SerializeField] AudioClip spraySound;
+    [SerializeField] AudioSource sprayAudioSource;
 
     // Start is called before the first frame update
     void Start()
@@ -35,6 +37,7 @@ public class SprayGun : MonoBehaviour
     private void FireGun()
     {
         sprayCollider.enabled = true;
+        sprayAudioSource.PlayOneShot(spraySound);
         sprayParticles.Play();
         StartCoroutine(EndFireGun());
     }
