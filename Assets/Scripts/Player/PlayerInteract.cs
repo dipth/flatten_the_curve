@@ -53,6 +53,11 @@ public class PlayerInteract : MonoBehaviour
         Rect newrect = exposureBar.rectTransform.rect;
         newrect.height = currExposure;
         exposureBar.rectTransform.sizeDelta = new Vector2(newrect.width, newrect.height);
+
+        if (currExposure <= maxExposure)
+        {
+            GameManager.instance.Die();
+        }
     }
 
     public bool AddHealthPack() 
@@ -74,7 +79,6 @@ public class PlayerInteract : MonoBehaviour
             ToggleHealthPacks();
         }
     }
-
     void ToggleHealthPacks() 
     {
         healthPackUIElements[currHealthPacks].enabled = !healthPackUIElements[currHealthPacks].enabled;
