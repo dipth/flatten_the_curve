@@ -9,7 +9,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
 
-    private int maxCitizens = 32;
+    private int maxCitizens = 50;
     private int savedCitizens = 0;
     [SerializeField] private Text totalCitizensLeftLabel;
     [SerializeField] private AudioSource musicSource;

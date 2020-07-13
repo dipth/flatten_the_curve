@@ -99,7 +99,7 @@ GameObject:
   - component: {fileID: 517497696392341243}
   m_Layer: 8
   m_Name: npc_man_04
-  m_TagString: Untagged
+  m_TagString: Regular
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

@@ -31,7 +31,7 @@ public class PlayerInteract : MonoBehaviour
         {
             if (exposureBar.rectTransform.rect.height < maxExposure)
             {
-                currExposure += .05f;
+                currExposure += .1f;
             }
         }
 
@@ -54,7 +54,7 @@ public class PlayerInteract : MonoBehaviour
         newrect.height = currExposure;
         exposureBar.rectTransform.sizeDelta = new Vector2(newrect.width, newrect.height);
 
-        if (currExposure <= maxExposure)
+        if (currExposure >= maxExposure)
         {
             GameManager.instance.Die();
         }
