@@ -161,6 +161,7 @@ MonoBehaviour:
   walkSpeed: 0
   sprintSpeed: 0
   moveDir: {x: 0, y: 0}
+  facingDir: {x: 0, y: 0}
 --- !u!114 &7918478083263281209
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -213,6 +214,61 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3002527307732163860}
     m_Modifications:
+    - target: {fileID: 1728247649076241446, guid: beaa332c757388741aa158709dca49d3,
+        type: 3}
+      propertyPath: InitialModule.maxNumParticles
+      value: 5000
+      objectReference: {fileID: 0}
+    - target: {fileID: 1728247649076241446, guid: beaa332c757388741aa158709dca49d3,
+        type: 3}
+      propertyPath: EmissionModule.rateOverTime.scalar
+      value: 5000
+      objectReference: {fileID: 0}
+    - target: {fileID: 1728247649076241446, guid: beaa332c757388741aa158709dca49d3,
+        type: 3}
+      propertyPath: CollisionModule.enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1728247649076241446, guid: beaa332c757388741aa158709dca49d3,
+        type: 3}
+      propertyPath: CollisionModule.type
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1728247649076241446, guid: beaa332c757388741aa158709dca49d3,
+        type: 3}
+      propertyPath: CollisionModule.collisionMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1728247649076241446, guid: beaa332c757388741aa158709dca49d3,
+        type: 3}
+      propertyPath: CollisionModule.multiplyColliderForceByCollisionAngle
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1728247649076241446, guid: beaa332c757388741aa158709dca49d3,
+        type: 3}
+      propertyPath: CollisionModule.m_Bounce.scalar
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1728247649076241446, guid: beaa332c757388741aa158709dca49d3,
+        type: 3}
+      propertyPath: CollisionModule.maxKillSpeed
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1728247649076241446, guid: beaa332c757388741aa158709dca49d3,
+        type: 3}
+      propertyPath: CollisionModule.collidesWith.m_Bits
+      value: 2615
+      objectReference: {fileID: 0}
+    - target: {fileID: 1728247649076241446, guid: beaa332c757388741aa158709dca49d3,
+        type: 3}
+      propertyPath: CollisionModule.maxCollisionShapes
+      value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 1728247649076241446, guid: beaa332c757388741aa158709dca49d3,
+        type: 3}
+      propertyPath: CollisionModule.quality
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1728247650836229008, guid: beaa332c757388741aa158709dca49d3,
         type: 3}
       propertyPath: player

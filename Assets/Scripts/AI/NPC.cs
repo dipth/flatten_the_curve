@@ -213,7 +213,7 @@ public class NPC : MonoBehaviour
 
             float dist = Vector2.Distance(transform.position, collider2Ds[0].transform.position);
 
-            Debug.Log(dist);
+            //Debug.Log(dist);
 
             if (dist < 1.3f)
             {

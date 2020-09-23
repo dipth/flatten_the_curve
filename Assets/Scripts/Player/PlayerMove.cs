@@ -1,7 +1,4 @@
 ﻿
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerMove : MonoBehaviour
@@ -24,6 +21,8 @@ public class PlayerMove : MonoBehaviour
     private float staminaRegenDelay = 2f;
 
     public Vector2 moveDir;
+
+    public Vector2 facingDir = new Vector2(0,-1f);
 
 
     private void Awake()
@@ -50,8 +49,20 @@ public class PlayerMove : MonoBehaviour
 
     private void HandleAnimation()
     {
-        animator.SetFloat("xVelocity", rigidbody2D.velocity.x);
-        animator.SetFloat("yVelocity", rigidbody2D.velocity.y);
+        if (moveDir.magnitude == 0)
+        {
+            animator.SetBool("Idle", true);
+
+            animator.SetFloat("xVelocity", facingDir.x);
+            animator.SetFloat("yVelocity", facingDir.y);
+        }
+        else
+        {
+            animator.SetBool("Idle", false);
+
+            animator.SetFloat("xVelocity", rigidbody2D.velocity.x);
+            animator.SetFloat("yVelocity", rigidbody2D.velocity.y);
+        }
     }
 
     private void SetPlayerSpeed()
@@ -96,11 +107,21 @@ public class PlayerMove : MonoBehaviour
             moveState = playerMoveState.walking;
         }
 
-
         float x = Input.GetAxisRaw("Horizontal");
         float y = Input.GetAxisRaw("Vertical");
 
         moveDir = new Vector2(x, y).normalized;
+
+        if (moveDir.magnitude != 0)
+        {
+            BufferInput(moveDir.x, moveDir.y);
+        }
+    }
+
+    private void BufferInput(float x, float y) 
+    {
+        facingDir.x = x;
+        facingDir.y = y;
     }
 
     private void FixedUpdate()
